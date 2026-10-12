@@ -12,7 +12,7 @@ Measured on 12 October 2026, Windows 11 x64, AMD Ryzen 7 9800X3D.
 - Baseline: `45c4eafdc0fc696aa00f776fd326f76b753926b2`.
 - Intrinsic: `9b5614ebcc2a8e2894329f535aa43718c1c3a4c9` (`wip`).
 - Its commit message was subsequently amended to
-  [`638d29eceb3409e4bce68d3a46dab1e2968e2659`](https://github.com/PaulusParssinen/runtime/commit/638d29eceb3409e4bce68d3a46dab1e2968e2659).
+  [`92dfdbbc0d10c7a0ae586ad9ae91c1e904ad7b2b`](https://github.com/PaulusParssinen/runtime/commit/92dfdbbc0d10c7a0ae586ad9ae91c1e904ad7b2b).
   Both commits have the identical source tree
   `4e0cf7a2da7f9a9689ed4138150724ada707c67b`; the measured binaries were not rebuilt.
 - Both use locally compiled Release CoreCLR, JIT, and CoreLib, reporting `.NET 12.0.0-dev`.

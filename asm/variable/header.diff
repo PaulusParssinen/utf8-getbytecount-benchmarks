@@ -1,0 +1,371 @@
+diff --git asm/variable/baseline.normalized.asm asm/variable/intrinsic.normalized.asm
+index 954e599..85b02cb 100644
+--- asm/variable/baseline.normalized.asm
++++ asm/variable/intrinsic.normalized.asm
+@@ -88,75 +88,30 @@ RWD00  	dd	00000060h ; case G_M000_IG08
+ ; rsp based frame
+ ; partially interruptible
+ ; No PGO data
+-; 0 inlinees with PGO data; 2 single block inlinees; 3 inlinees without PGO data
++; 0 inlinees with PGO data; 2 single block inlinees; 1 inlinees without PGO data
+ 
+ G_M000_IG01:
+-       push     rdi
+-       push     rsi
+-       push     rbp
+-       push     rbx
+-       sub      rsp, 56
+-       xor      eax, eax
+-       mov      qword ptr [rsp+0x30], rax
++       sub      rsp, 40
+  
+ G_M000_IG02:
+-       mov      r8, 0xRELOC
+-       mov      rbx, gword ptr [r8]
+-       mov      r8, gword ptr [rcx+0x08]
+-       test     r8, r8
+-       je       SHORT G_M000_IG06
+-       lea      r9, bword ptr [r8+0x0C]
+-       mov      bword ptr [rsp+0x30], r9
+-       mov      rsi, bword ptr [rsp+0x30]
+-       mov      edi, dword ptr [r8+0x08]
+-       lea      r8, [rsp+0x28]
+-       lea      r9, [rsp+0x20]
+-       mov      rcx, rsi
+-       mov      edx, edi
+-       call     [System.Text.Unicode.Utf16Utility:GetPointerToFirstInvalidChar(ptr,int,byref,byref):ptr]
+-       sub      rax, rsi
+-       mov      r9, rax
+-       shr      r9, 63
+-       add      r9, rax
+-       sar      r9, 1
+-       movsxd   rbp, r9d
+-       add      rbp, qword ptr [rsp+0x28]
+-       cmp      rbp, 0x7FFFFFFF
+-       ja       SHORT G_M000_IG07
+-       cmp      r9d, edi
++       mov      rdx, gword ptr [rcx+0x08]
++       test     rdx, rdx
+        je       SHORT G_M000_IG04
++       lea      rcx, bword ptr [rdx+0x0C]
++       mov      edx, dword ptr [rdx+0x08]
++       call     [System.Text.UTF8Encoding+UTF8EncodingSealed:GetByteCount(byref,int):int]
++       nop      
+  
+ G_M000_IG03:
+-       mov      rcx, rbx
+-       mov      rdx, rsi
+-       mov      r8d, edi
+-       call     [System.Text.Encoding:GetByteCountWithFallback(ptr,int,int):int:this]
+-       add      ebp, eax
+-       js       SHORT G_M000_IG07
+- 
+-G_M000_IG04:
+-       xor      rax, rax
+-       mov      bword ptr [rsp+0x30], rax
+-       mov      eax, ebp
+- 
+-G_M000_IG05:
+-       add      rsp, 56
+-       pop      rbx
+-       pop      rbp
+-       pop      rsi
+-       pop      rdi
++       add      rsp, 40
+        ret      
+  
+-G_M000_IG06:
++G_M000_IG04:
+        mov      ecx, 14
+        call     [System.ThrowHelper:ThrowArgumentNullException(int)]
+        int3     
+  
+-G_M000_IG07:
+-       call     [System.Text.Encoding:ThrowConversionOverflow()]
+-       int3     
+- 
+-; Total bytes of code 170 for method Utf8VariableBenchmarks:String():int:this (FullOpts)
++; Total bytes of code 44 for method Utf8VariableBenchmarks:String():int:this (FullOpts)
+ 
+ ; Assembly listing for method Utf8VariableBenchmarks:Span():int:this (FullOpts)
+ ; Emitting BLENDED_CODE for x64 + VEX + EVEX on Windows
+@@ -165,78 +120,37 @@ G_M000_IG07:
+ ; rsp based frame
+ ; partially interruptible
+ ; No PGO data
+-; 0 inlinees with PGO data; 5 single block inlinees; 3 inlinees without PGO data
++; 0 inlinees with PGO data; 5 single block inlinees; 1 inlinees without PGO data
+ 
+ G_M000_IG01:
+-       push     rdi
+-       push     rsi
+-       push     rbp
+-       push     rbx
+-       sub      rsp, 56
+-       xor      eax, eax
+-       mov      qword ptr [rsp+0x30], rax
++       sub      rsp, 40
+  
+ G_M000_IG02:
+-       mov      r8, 0xRELOC
+-       mov      rbx, gword ptr [r8]
+-       mov      r8, gword ptr [rcx+0x08]
+-       test     r8, r8
++       mov      rcx, gword ptr [rcx+0x08]
++       test     rcx, rcx
+        je       SHORT G_M000_IG04
+  
+ G_M000_IG03:
+-       lea      rsi, bword ptr [r8+0x0C]
+-       mov      edi, dword ptr [r8+0x08]
++       lea      rdx, bword ptr [rcx+0x0C]
++       mov      ecx, dword ptr [rcx+0x08]
++       mov      eax, ecx
+        jmp      SHORT G_M000_IG05
+  
+ G_M000_IG04:
+-       xor      rsi, rsi
+-       xor      edi, edi
++       xor      rdx, rdx
++       xor      eax, eax
+  
+ G_M000_IG05:
+-       mov      bword ptr [rsp+0x30], rsi
+-       lea      r8, [rsp+0x28]
+-       lea      r9, [rsp+0x20]
+-       mov      rcx, rsi
+-       mov      edx, edi
+-       call     [System.Text.Unicode.Utf16Utility:GetPointerToFirstInvalidChar(ptr,int,byref,byref):ptr]
+-       sub      rax, rsi
+-       mov      r9, rax
+-       shr      r9, 63
+-       add      r9, rax
+-       sar      r9, 1
+-       movsxd   rbp, r9d
+-       add      rbp, qword ptr [rsp+0x28]
+-       cmp      rbp, 0x7FFFFFFF
+-       ja       SHORT G_M000_IG09
+-       cmp      r9d, edi
+-       je       SHORT G_M000_IG07
++       mov      rcx, rdx
++       mov      edx, eax
++       call     [System.Text.UTF8Encoding+UTF8EncodingSealed:GetByteCount(byref,int):int]
++       nop      
+  
+ G_M000_IG06:
+-       mov      rcx, rbx
+-       mov      rdx, rsi
+-       mov      r8d, edi
+-       call     [System.Text.Encoding:GetByteCountWithFallback(ptr,int,int):int:this]
+-       add      ebp, eax
+-       js       SHORT G_M000_IG09
+- 
+-G_M000_IG07:
+-       xor      rax, rax
+-       mov      bword ptr [rsp+0x30], rax
+-       mov      eax, ebp
+- 
+-G_M000_IG08:
+-       add      rsp, 56
+-       pop      rbx
+-       pop      rbp
+-       pop      rsi
+-       pop      rdi
++       add      rsp, 40
+        ret      
+  
+-G_M000_IG09:
+-       call     [System.Text.Encoding:ThrowConversionOverflow()]
+-       int3     
+- 
+-; Total bytes of code 159 for method Utf8VariableBenchmarks:Span():int:this (FullOpts)
++; Total bytes of code 45 for method Utf8VariableBenchmarks:Span():int:this (FullOpts)
+ 
+ ; Assembly listing for method Utf8VariableBenchmarks:FitsString():bool:this (FullOpts)
+ ; Emitting BLENDED_CODE for x64 + VEX + EVEX on Windows
+@@ -245,77 +159,32 @@ G_M000_IG09:
+ ; rsp based frame
+ ; partially interruptible
+ ; No PGO data
+-; 0 inlinees with PGO data; 2 single block inlinees; 3 inlinees without PGO data
++; 0 inlinees with PGO data; 2 single block inlinees; 1 inlinees without PGO data
+ 
+ G_M000_IG01:
+-       push     rdi
+-       push     rsi
+-       push     rbp
+-       push     rbx
+-       sub      rsp, 56
+-       xor      eax, eax
+-       mov      qword ptr [rsp+0x30], rax
++       sub      rsp, 40
+  
+ G_M000_IG02:
+-       mov      r8, 0xRELOC
+-       mov      rbx, gword ptr [r8]
+-       mov      r8, gword ptr [rcx+0x08]
+-       test     r8, r8
+-       je       G_M000_IG06
+-       lea      r9, bword ptr [r8+0x0C]
+-       mov      bword ptr [rsp+0x30], r9
+-       mov      rsi, bword ptr [rsp+0x30]
+-       mov      edi, dword ptr [r8+0x08]
+-       lea      r8, [rsp+0x28]
+-       lea      r9, [rsp+0x20]
+-       mov      rcx, rsi
+-       mov      edx, edi
+-       call     [System.Text.Unicode.Utf16Utility:GetPointerToFirstInvalidChar(ptr,int,byref,byref):ptr]
+-       sub      rax, rsi
+-       mov      r9, rax
+-       shr      r9, 63
+-       add      r9, rax
+-       sar      r9, 1
+-       movsxd   rbp, r9d
+-       add      rbp, qword ptr [rsp+0x28]
+-       cmp      rbp, 0x7FFFFFFF
+-       ja       SHORT G_M000_IG07
+-       cmp      r9d, edi
++       mov      rdx, gword ptr [rcx+0x08]
++       test     rdx, rdx
+        je       SHORT G_M000_IG04
+- 
+-G_M000_IG03:
+-       mov      rcx, rbx
+-       mov      rdx, rsi
+-       mov      r8d, edi
+-       call     [System.Text.Encoding:GetByteCountWithFallback(ptr,int,int):int:this]
+-       add      ebp, eax
+-       js       SHORT G_M000_IG07
+- 
+-G_M000_IG04:
+-       xor      rax, rax
+-       mov      bword ptr [rsp+0x30], rax
+-       cmp      ebp, 128
++       lea      rcx, bword ptr [rdx+0x0C]
++       mov      edx, dword ptr [rdx+0x08]
++       call     [System.Text.UTF8Encoding+UTF8EncodingSealed:GetByteCount(byref,int):int]
++       cmp      eax, 128
+        setle    al
+        movzx    rax, al
+  
+-G_M000_IG05:
+-       add      rsp, 56
+-       pop      rbx
+-       pop      rbp
+-       pop      rsi
+-       pop      rdi
++G_M000_IG03:
++       add      rsp, 40
+        ret      
+  
+-G_M000_IG06:
++G_M000_IG04:
+        mov      ecx, 14
+        call     [System.ThrowHelper:ThrowArgumentNullException(int)]
+        int3     
+  
+-G_M000_IG07:
+-       call     [System.Text.Encoding:ThrowConversionOverflow()]
+-       int3     
+- 
+-; Total bytes of code 184 for method Utf8VariableBenchmarks:FitsString():bool:this (FullOpts)
++; Total bytes of code 54 for method Utf8VariableBenchmarks:FitsString():bool:this (FullOpts)
+ 
+ ; Assembly listing for method Utf8VariableBenchmarks:FitsSpan():bool:this (FullOpts)
+ ; Emitting BLENDED_CODE for x64 + VEX + EVEX on Windows
+@@ -324,79 +193,38 @@ G_M000_IG07:
+ ; rsp based frame
+ ; partially interruptible
+ ; No PGO data
+-; 0 inlinees with PGO data; 5 single block inlinees; 3 inlinees without PGO data
++; 0 inlinees with PGO data; 5 single block inlinees; 1 inlinees without PGO data
+ 
+ G_M000_IG01:
+-       push     rdi
+-       push     rsi
+-       push     rbp
+-       push     rbx
+-       sub      rsp, 56
+-       xor      eax, eax
+-       mov      qword ptr [rsp+0x30], rax
++       sub      rsp, 40
+  
+ G_M000_IG02:
+-       mov      r8, 0xRELOC
+-       mov      rbx, gword ptr [r8]
+-       mov      r8, gword ptr [rcx+0x08]
+-       test     r8, r8
++       mov      rcx, gword ptr [rcx+0x08]
++       test     rcx, rcx
+        je       SHORT G_M000_IG04
+  
+ G_M000_IG03:
+-       lea      rsi, bword ptr [r8+0x0C]
+-       mov      edi, dword ptr [r8+0x08]
++       lea      rdx, bword ptr [rcx+0x0C]
++       mov      ecx, dword ptr [rcx+0x08]
++       mov      eax, ecx
+        jmp      SHORT G_M000_IG05
+  
+ G_M000_IG04:
+-       xor      rsi, rsi
+-       xor      edi, edi
++       xor      rdx, rdx
++       xor      eax, eax
+  
+ G_M000_IG05:
+-       mov      bword ptr [rsp+0x30], rsi
+-       lea      r8, [rsp+0x28]
+-       lea      r9, [rsp+0x20]
+-       mov      rcx, rsi
+-       mov      edx, edi
+-       call     [System.Text.Unicode.Utf16Utility:GetPointerToFirstInvalidChar(ptr,int,byref,byref):ptr]
+-       sub      rax, rsi
+-       mov      r9, rax
+-       shr      r9, 63
+-       add      r9, rax
+-       sar      r9, 1
+-       movsxd   rbp, r9d
+-       add      rbp, qword ptr [rsp+0x28]
+-       cmp      rbp, 0x7FFFFFFF
+-       ja       SHORT G_M000_IG09
+-       cmp      r9d, edi
+-       je       SHORT G_M000_IG07
+- 
+-G_M000_IG06:
+-       mov      rcx, rbx
+-       mov      rdx, rsi
+-       mov      r8d, edi
+-       call     [System.Text.Encoding:GetByteCountWithFallback(ptr,int,int):int:this]
+-       add      ebp, eax
+-       js       SHORT G_M000_IG09
+- 
+-G_M000_IG07:
+-       xor      rax, rax
+-       mov      bword ptr [rsp+0x30], rax
+-       cmp      ebp, 128
++       mov      rcx, rdx
++       mov      edx, eax
++       call     [System.Text.UTF8Encoding+UTF8EncodingSealed:GetByteCount(byref,int):int]
++       cmp      eax, 128
+        setle    al
+        movzx    rax, al
+  
+-G_M000_IG08:
+-       add      rsp, 56
+-       pop      rbx
+-       pop      rbp
+-       pop      rsi
+-       pop      rdi
++G_M000_IG06:
++       add      rsp, 40
+        ret      
+  
+-G_M000_IG09:
+-       call     [System.Text.Encoding:ThrowConversionOverflow()]
+-       int3     
+- 
+-; Total bytes of code 169 for method Utf8VariableBenchmarks:FitsSpan():bool:this (FullOpts)
++; Total bytes of code 55 for method Utf8VariableBenchmarks:FitsSpan():bool:this (FullOpts)
+ 
+ 

@@ -1,0 +1,41 @@
+{
+  "CapturedUtc": "2026-10-12T14:45:27.7535117Z",
+  "Cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "OS": "Microsoft Windows 11 IoT Enterprise LTSC",
+  "Sdk": "10.0.204",
+  "BenchmarkDotNet": "0.15.8",
+  "BuildCommand": "build.cmd -subset clr.runtime+clr.corelib+clr.nativecorelib -configuration Release",
+  "Runtimes": [
+    {
+      "Name": "baseline",
+      "Commit": "45c4eafdc0fc696aa00f776fd326f76b753926b2",
+      "Configuration": "Release",
+      "CoreRun": "F:\\src\\utf8-getbytecount-benchmarks\\.local\\runtimes\\baseline\\corerun.exe",
+      "Sha256": {
+        "coreclr.dll": "B2378A01DA149F9964E25E6024E10BBCD2DA44B4E7EED875FEF9B4736EA1BB79",
+        "clrjit.dll": "715589C0435B2C4501255F57BCD85919AC61928B85F35CB5F8F7618C589F7509",
+        "System.Private.CoreLib.dll": "EF1DF025B7B64764E7066BE160B5A0109E4DD4800DB7C74449900B1FEB322150",
+        "corerun.exe": "EF1023D57401CB44450FC81C208D415011BE3B58D409EB61EA10E7118FC1647A"
+      }
+    },
+    {
+      "Name": "intrinsic",
+      "Commit": "9b5614ebcc2a8e2894329f535aa43718c1c3a4c9",
+      "Configuration": "Release",
+      "CoreRun": "F:\\src\\utf8-getbytecount-benchmarks\\.local\\runtimes\\intrinsic\\corerun.exe",
+      "Sha256": {
+        "coreclr.dll": "C31DAB597824E753908445AA8065494316C748FE41691C40B26DA2B3E14CCB26",
+        "clrjit.dll": "BD75E94F36FD15B3B2572C2FABE04EFEB2AB0096B3A4DF6DB0F6F8C105CF290B",
+        "System.Private.CoreLib.dll": "5D8552CA943E91366D9E73532777D9B7A4C6F07498EBF13EB81FEBD6DE0F5842",
+        "corerun.exe": "C25A585A28A4CF54D73D02D6ECBC5EC4E766DE8F1C3B7260B54E58EEF3DE6E61"
+      }
+    }
+  ],
+  "SharedLibrariesSource": "F:/src/runtime/artifacts/tests/coreclr/windows.x64.Checked/Tests/Core_Root",
+  "BenchmarkAssemblySha256": "B73B5F45E12658EF16433DC53460699B7D572CCCF6645562476BAE8ED3FD874E",
+  "CapacityBenchmarkAssemblySha256": "62372F0505A36ECF7128240FD83E330FDB8E14B37C2CD0DE0E636837B11767E6",
+  "FinalSourceAssemblySha256": "A3AF8169B711B821B2B8E874666B1CF3F375A5FC22810508CCD595B0BC2A442E",
+  "IntrinsicAmendedCommit": "638d29eceb3409e4bce68d3a46dab1e2968e2659",
+  "RuntimeSourceTree": "4e0cf7a2da7f9a9689ed4138150724ada707c67b",
+  "SingleFileBenchmarkAssemblySha256": "B757DF7F4853A8A91EDA576951B6E71B9D140356D18ADFA30F79FB3B7521987D"
+}

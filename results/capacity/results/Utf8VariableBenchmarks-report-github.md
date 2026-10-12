@@ -1,0 +1,44 @@
+```
+
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26100.9457/24H2/2024Update/HudsonValley)
+AMD Ryzen 7 9800X3D 4.70GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 10.0.204
+  [Host]    : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v4
+  Baseline  : .NET 12.0.0 (12.0.0-dev, 42.42.42.42424), X64 RyuJIT x86-64-v4
+  Intrinsic : .NET 12.0.0 (12.0.0-dev, 42.42.42.42424), X64 RyuJIT x86-64-v4
+
+EnvironmentVariables=DOTNET_TieredCompilation=1,DOTNET_TieredPGO=1,DOTNET_ReadyToRun=0  Runtime=.NET 10.0  IterationCount=12  
+IterationTime=250ms  LaunchCount=2  WarmupCount=6  
+
+```
+| Method     | Job       | Toolchain | Input     | Mean      | Error     | StdDev    | Median    | Ratio | RatioSD |
+|----------- |---------- |---------- |---------- |----------:|----------:|----------:|----------:|------:|--------:|
+| **FitsString** | **Baseline**  | **Baseline**  | **Ascii5**    |  **4.043 ns** | **0.0078 ns** | **0.0093 ns** |  **4.042 ns** |  **1.00** |    **0.00** |
+| FitsString | Intrinsic | Intrinsic | Ascii5    |  3.675 ns | 0.0430 ns | 0.0544 ns |  3.652 ns |  0.91 |    0.01 |
+|            |           |           |           |           |           |           |           |       |         |
+| FitsSpan   | Baseline  | Baseline  | Ascii5    |  4.035 ns | 0.0106 ns | 0.0126 ns |  4.030 ns |  1.00 |    0.00 |
+| FitsSpan   | Intrinsic | Intrinsic | Ascii5    |  3.857 ns | 0.0127 ns | 0.0141 ns |  3.861 ns |  0.96 |    0.00 |
+|            |           |           |           |           |           |           |           |       |         |
+| **FitsString** | **Baseline**  | **Baseline**  | **Ascii64**   |  **5.592 ns** | **0.0158 ns** | **0.0182 ns** |  **5.584 ns** |  **1.00** |    **0.00** |
+| FitsString | Intrinsic | Intrinsic | Ascii64   |  5.040 ns | 0.2770 ns | 0.3297 ns |  5.334 ns |  0.90 |    0.06 |
+|            |           |           |           |           |           |           |           |       |         |
+| FitsSpan   | Baseline  | Baseline  | Ascii64   |  5.880 ns | 0.2933 ns | 0.3491 ns |  6.166 ns |  1.00 |    0.08 |
+| FitsSpan   | Intrinsic | Intrinsic | Ascii64   |  4.854 ns | 0.0139 ns | 0.0160 ns |  4.854 ns |  0.83 |    0.05 |
+|            |           |           |           |           |           |           |           |       |         |
+| **FitsString** | **Baseline**  | **Baseline**  | **Ascii1024** | **11.676 ns** | **0.1344 ns** | **0.1651 ns** | **11.640 ns** |  **1.00** |    **0.02** |
+| FitsString | Intrinsic | Intrinsic | Ascii1024 | 11.448 ns | 0.0423 ns | 0.0519 ns | 11.430 ns |  0.98 |    0.01 |
+|            |           |           |           |           |           |           |           |       |         |
+| FitsSpan   | Baseline  | Baseline  | Ascii1024 | 11.712 ns | 0.3574 ns | 0.4520 ns | 11.901 ns |  1.00 |    0.05 |
+| FitsSpan   | Intrinsic | Intrinsic | Ascii1024 | 12.270 ns | 0.0704 ns | 0.0864 ns | 12.251 ns |  1.05 |    0.04 |
+|            |           |           |           |           |           |           |           |       |         |
+| **FitsString** | **Baseline**  | **Baseline**  | **Unicode**   |  **5.979 ns** | **0.0184 ns** | **0.0212 ns** |  **5.986 ns** |  **1.00** |    **0.00** |
+| FitsString | Intrinsic | Intrinsic | Unicode   |  5.881 ns | 0.0677 ns | 0.0752 ns |  5.839 ns |  0.98 |    0.01 |
+|            |           |           |           |           |           |           |           |       |         |
+| FitsSpan   | Baseline  | Baseline  | Unicode   |  5.962 ns | 0.0128 ns | 0.0147 ns |  5.957 ns |  1.00 |    0.00 |
+| FitsSpan   | Intrinsic | Intrinsic | Unicode   |  6.000 ns | 0.0392 ns | 0.0452 ns |  5.999 ns |  1.01 |    0.01 |
+|            |           |           |           |           |           |           |           |       |         |
+| **FitsString** | **Baseline**  | **Baseline**  | **Malformed** | **37.941 ns** | **0.5336 ns** | **0.6353 ns** | **37.795 ns** |  **1.00** |    **0.02** |
+| FitsString | Intrinsic | Intrinsic | Malformed | 36.809 ns | 0.1968 ns | 0.2342 ns | 36.708 ns |  0.97 |    0.02 |
+|            |           |           |           |           |           |           |           |       |         |
+| FitsSpan   | Baseline  | Baseline  | Malformed | 37.595 ns | 0.2300 ns | 0.2556 ns | 37.567 ns |  1.00 |    0.01 |
+| FitsSpan   | Intrinsic | Intrinsic | Malformed | 36.972 ns | 0.5823 ns | 0.6932 ns | 36.769 ns |  0.98 |    0.02 |
